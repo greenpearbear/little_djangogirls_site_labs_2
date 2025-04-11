@@ -1,0 +1,14 @@
+services:
+  app:
+    image: greenpearbear/django_girls_labs_02
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: volume
+        source: sqlite-db
+        target: /app/db
+    env_file: .env
+
+
+volumes:
+  sqlite-db:

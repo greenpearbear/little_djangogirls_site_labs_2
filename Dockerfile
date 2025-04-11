@@ -1,5 +1,13 @@
 FROM python:3.11-alpine
 
+ARG USER
+ARG EMAIl
+ARG PASSWORD
+
+ENV USER=${USER}
+ENV EMAIl=${EMAIL}
+ENV PASSWORD=${PASSWORD}
+
 WORKDIR /app
 
 RUN addgroup -g 2000 testik \
