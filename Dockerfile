@@ -17,6 +17,10 @@ RUN chmod +x /app/init.sh
 
 EXPOSE 8000
 
+RUN chown -R testik /app
+
+VOLUME /app/db
+
 USER testik
 
 CMD ["/app/init.sh"]
