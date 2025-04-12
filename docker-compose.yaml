@@ -1,6 +1,9 @@
 services:
   app:
     image: greenpearbear/django_girls_labs_02:finaly
+    depends_on:
+      migration:
+        condition: service_completed_successfully
     ports:
       - "8000:8000"
     volumes:
@@ -8,7 +11,14 @@ services:
         source: sqlite-db
         target: /app/db
     env_file: .env
-
+  migration:
+    image: greenpearbear/django_girls_labs_02:finaly
+    volumes:
+      - type: volume
+        source: sqlite-db
+        target: /app/db
+    command: python3 manage.py migrate
+    restart: "no"
 
 volumes:
   sqlite-db:
