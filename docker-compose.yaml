@@ -1,6 +1,6 @@
 services:
   app:
-    image: greenpearbear/django_girls_labs_02
+    image: greenpearbear/django_girls_labs_02:finaly
     ports:
       - "8000:8000"
     volumes:

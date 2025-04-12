@@ -10,22 +10,19 @@ ENV PASSWORD=${PASSWORD}
 
 WORKDIR /app
 
-RUN addgroup -g 2000 testik \
- && adduser -u 2000 -G testik -s /bin/sh -D testik
-
-RUN mkdir -p /app/db
-
 COPY requirements.txt /app/requirements.txt
 
-RUN pip install -r requirements.txt
+RUN addgroup -g 2000 testik \
+ && adduser -u 2000 -G testik -s /bin/sh -D testik \
+ && mkdir -p /app/db \
+ && pip install -r requirements.txt \
+ && chown -R testik /app
 
 COPY . .
 
 RUN chmod +x /app/init.sh
 
 EXPOSE 8000
-
-RUN chown -R testik /app
 
 VOLUME /app/db
 
